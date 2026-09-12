@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRT Trading - Candle Range Theory Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📊 CRT Trading Analyzer</h1>
+                <p>Candle Range Theory Pattern Recognition Tool</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <button class="nav-btn active" data-tab="analyzer">Analyzer</button>
+            <button class="nav-btn" data-tab="education">Learn CRT</button>
+            <button class="nav-btn" data-tab="signals">Signals</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Analyzer Tab -->
+            <section id="analyzer" class="tab-content active">
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="symbolInput">Symbol:</label>
+                        <input type="text" id="symbolInput" placeholder="e.g., AAPL, BTC, EURUSD" value="SAMPLE">
+                        <button id="loadBtn" class="btn btn-primary">Load Data</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="timeframeSelect">Timeframe:</label>
+                        <select id="timeframeSelect">
+                            <option value="1m">1 Min</option>
+                            <option value="5m">5 Min</option>
+                            <option value="15m">15 Min</option>
+                            <option value="1h" selected>1 Hour</option>
+                            <option value="4h">4 Hour</option>
+                            <option value="1d">Daily</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="chart-container">
+                    <canvas id="crtChart"></canvas>
+                </div>
+
+                <!-- CRT Analysis Panel -->
+                <div class="analysis-panel">
+                    <div class="panel-header">
+                        <h3>📈 CRT Analysis</h3>
+                    </div>
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <h4>Current Candle</h4>
+                            <div id="candleInfo" class="info-box">
+                                <p>Open: <span id="infoOpen">-</span></p>
+                                <p>High: <span id="infoHigh">-</span></p>
+                                <p>Low: <span id="infoLow">-</span></p>
+                                <p>Close: <span id="infoClose">-</span></p>
+                                <p>Range: <span id="infoRange">-</span></p>
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h4>CRT Pattern</h4>
+                            <div id="patternInfo" class="info-box">
+                                <p>Type: <span id="patternType" class="badge">-</span></p>
+                                <p>Strength: <span id="patternStrength">-</span></p>
+                                <p>Signal: <span id="patternSignal" class="badge">-</span></p>
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h4>Range Analysis</h4>
+                            <div id="rangeInfo" class="info-box">
+                                <p>Avg Range: <span id="avgRange">-</span></p>
+                                <p>Range %: <span id="rangePercent">-</span></p>
+                                <p>Status: <span id="rangeStatus" class="badge">-</span></p>
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h4>Trading Setup</h4>
+                            <div id="setupInfo" class="info-box">
+                                <p>Entry: <span id="setupEntry">-</span></p>
+                                <p>Stop Loss: <span id="setupSL">-</span></p>
+                                <p>Target: <span id="setupTarget">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Tab -->
+            <section id="education" class="tab-content">
+                <div class="education-content">
+                    <div class="section">
+                        <h2>What is Candle Range Theory (CRT)?</h2>
+                        <p>Candle Range Theory is a technical analysis method that focuses on the relationship between the open, high, low, and close prices of candlesticks. It helps traders identify high-probability setups by analyzing price ranges and patterns.</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Key CRT Concepts</h2>
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <h3>🔥 High Range (HR)</h3>
+                                <p>A candle with an unusually large range compared to recent candles. Often signals strong directional move.</p>
+                            </div>
+                            <div class="concept-card">
+                                <h3>❄️ Low Range (LR)</h3>
+                                <p>A candle with a small range, indicating consolidation and potential breakout setup.</p>
+                            </div>
+                            <div class="concept-card">
+                                <h3>📊 Inside Bar</h3>
+                                <p>A candle that is completely inside the previous candle's range. Strong setup for breakout trading.</p>
+                            </div>
+                            <div class="concept-card">
+                                <h3>⬆️ Outside Bar</h3>
+                                <p>A candle that extends beyond the previous candle's range in both directions. Shows volatility expansion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Common CRT Setups</h2>
+                        <ol>
+                            <li><strong>HR + HR:</strong> Two high range candles - trending market, good for momentum trades</li>
+                            <li><strong>LR + LR:</strong> Two low range candles - consolidation, watch for breakout</li>
+                            <li><strong>HR + LR:</strong> Range contraction after expansion - potential reversal or consolidation</li>
+                            <li><strong>Inside Bar:</strong> Perfect for tight stop loss placement and risk management</li>
+                            <li><strong>Outside Bar:</strong> Strong breakout signal, good for trend continuation</li>
+                        </ol>
+                    </div>
+
+                    <div class="section">
+                        <h2>Trading Tips</h2>
+                        <ul>
+                            <li>Always trade in the direction of the larger timeframe trend</li>
+                            <li>Use inside bars for tight stop loss placement</li>
+                            <li>Wait for confirmation before entering trades</li>
+                            <li>Manage risk with proper position sizing</li>
+                            <li>Combine CRT with support/resistance levels for better accuracy</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Signals Tab -->
+            <section id="signals" class="tab-content">
+                <div class="signals-content">
+                    <div class="signals-header">
+                        <h2>📡 Trading Signals</h2>
+                        <p>Real-time CRT pattern recognition and trading signals</p>
+                    </div>
+
+                    <div class="signals-list" id="signalsList">
+                        <div class="signal-placeholder">
+                            <p>Load data to see trading signals</p>
+                        </div>
+                    </div>
+
+                    <div class="signals-legend">
+                        <h3>Signal Legend</h3>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <span class="badge badge-buy">BUY</span>
+                                <span>Bullish setup detected</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-sell">SELL</span>
+                                <span>Bearish setup detected</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-watch">WATCH</span>
+                                <span>Pattern forming, monitor</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-neutral">NEUTRAL</span>
+                                <span>No clear setup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 CRT Trading Analyzer | Disclaimer: Not financial advice. Trade at your own risk.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
