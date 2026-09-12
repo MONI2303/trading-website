@@ -1,0 +1,29 @@
+{
+  "name": "crt-trading-analyzer",
+  "version": "1.0.0",
+  "description": "Professional CRT (Candle Range Theory) Trading Analysis Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "build": "echo 'Static site - no build required'",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "trading",
+    "crt",
+    "candle-range-theory",
+    "technical-analysis",
+    "chart",
+    "pattern-recognition"
+  ],
+  "author": "MONI2303",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MONI2303/trading-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MONI2303/trading-website/issues"
+  },
+  "homepage": "https://github.com/MONI2303/trading-website#readme"
+}
